@@ -19,15 +19,4 @@ def detail(request, album_id):
     #     raise Http404 ("Album does not exist")
     # return render (request, 'music/detail.html', {'album': album })
     album = get_object_or_404 (Album, pk=album_id)
-    return render (request, 'msuic/detail.html', {'alnum': album })
-
-def favorite(request, album_id):
-    # we want to check the database and check the album is there or not.
-    #return HttpResponse ("<h2>details for Album id: " + str (album_id) + "</h2>")
-    # try:
-    #     album = Album.objects.get (pk=album_id)
-    # except Album.DoesNotExist:
-    #     raise Http404 ("Album does not exist")
-    # return render (request, 'music/detail.html', {'album': album })
-    album = get_object_or_404 (Album, pk=album_id)
-    return render (request, 'msuic/detail.html', {'alnum': album })
+    return render (request, 'music/detail.html', {'album': album })
