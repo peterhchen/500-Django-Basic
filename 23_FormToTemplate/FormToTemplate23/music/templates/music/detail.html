@@ -1,0 +1,32 @@
+<!--
+{{ album }} 
+-->
+<img src="{{ album.album_logo }}" width="200" height="150">
+<h1>{{ album.album_title }}</h1>
+<h3>{{ album.artist }}</h3>
+
+<h3>{{ url }}</h3>
+<h3>{{ 'music:favorite' }}</h3>
+<h3>{{ album.id }}</h3>
+{% comment %} <ul>
+    {% for song in album.song_set.all %}
+        <li>{{ song.song_title }} - {{ song.file_type }}</li>
+    {% endfor %}
+</ul> {% endcomment %}
+
+{% if error_message %}
+    <p><strong>{{ error_message }} </strong><.p>
+{% endif %}
+<form action="." method="post">
+    {% csrf_token %}
+    {% for song in album.song_set.all %}
+        <input type="radio" id="song {{ forloop.counter }}" name="song" value="{{ song.id }}" />
+        <label for = "song{{ forloop.count }}"">
+            {{ song.song_title }}
+            {% if song.is_favorite %}
+                <img src="https://www.dreamstime.com/stock-illustration-golden-star-logo-your-design-vector-illustration-isolated-white-image83940002" width=16 height=16 />
+            {% endif %}
+        </label><br>
+    {% endfor %}
+    <input type="submit" ="Favorite">
+</form>
